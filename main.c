@@ -59,6 +59,10 @@ if (strcmp(opcode, "push") == 0)
 push(kichwa, hesabu);
 else if (strcmp(opcode, "pall") == 0)
 pall(kichwa, hesabu);
+else if (strcmp(opcode, "pint") == 0)
+pint(kichwa, hesabu);
+else if (strcmp(opcode, "pop") == 0)
+pop(kichwa, hesabu);
 else if (strcmp(opcode, "add") == 0)
 add(kichwa, hesabu);
 else if (strcmp(opcode, "swap") == 0)

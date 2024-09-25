@@ -27,6 +27,8 @@ typedef struct bus_s
 extern bus_t bus;
 
 /* Function prototypes */
+void pint(stack_t **kichwa, unsigned int line_number);
+void pop(stack_t **kichwa, unsigned int line_number);
 void addnode(stack_t **kichwa, int n);
 void addqueue(stack_t **kichwa, int n);
 void push(stack_t **kichwa, unsigned int hesabu);
