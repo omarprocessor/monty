@@ -1,41 +1,44 @@
 #include "monty.h"
 
 /**
- * sukuma - Inaongeza kipengele kipya juu ya stack
- * @stack: Pointer kwa kipengele cha juu cha stack
- * @nambari_ya_mstari: Nambari ya mstari unaotekelezwa
- * @thamani: Thamani ya kipengele kipya
- *
- * Inasukuma kipengele kipya na kulipa thamani
- */
-void push(orodha_t **stack, unsigned int nambari_ya_mstari, char *thamani)
+ * push - add node to the stack
+ * @kichwa: stack head
+ * @hesabu: line_number
+ * Return: no return
+*/
+void push(stack_t **kichwa, unsigned int hesabu)
 {
-orodha_t *kipya;
-int nambari;
+int n, j = 0, bendera = 0;
 
-if (thamani == NULL || isdigit(thamani[0]) == 0)
+if (bus.arg)
 {
-fprintf(stderr, "L%u: usage: push integer\n", nambari_ya_mstari);
+if (bus.arg[0] == '-')
+j++;
+for (; bus.arg[j] != '\0'; j++)
+{
+if (bus.arg[j] > 57 || bus.arg[j] < 48)
+bendera = 1;
+}
+if (bendera == 1)
+{
+fprintf(stderr, "L%d: usage: push integer\n", hesabu);
+fclose(bus.file);
+free(bus.content);
+free_stack(*kichwa);
 exit(EXIT_FAILURE);
 }
-
-nambari = atoi(thamani);
-kipya = malloc(sizeof(orodha_t));
-
-if (kipya == NULL)
+}
+else
 {
-fprintf(stderr, "Error: malloc failed\n");
+fprintf(stderr, "L%d: usage: push integer\n", hesabu);
+fclose(bus.file);
+free(bus.content);
+free_stack(*kichwa);
 exit(EXIT_FAILURE);
 }
-
-kipya->nambari = nambari;
-kipya->iliopita = NULL;
-kipya->inayofuata = *stack;
-
-if (*stack != NULL)
-{
-(*stack)->iliopita = kipya;
-}
-
-*stack = kipya;
+n = atoi(bus.arg);
+if (bus.lifi == 0)
+addnode(kichwa, n);
+else
+addqueue(kichwa, n);
 }

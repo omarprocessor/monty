@@ -1,21 +1,22 @@
 #include "monty.h"
 
 /**
- * pall - Inachapisha vipengele vyote kwenye stack
- * @stack: Pointer kwa kipengele cha juu cha stack
- * @nambari_ya_mstari: Nambari ya mstari unaotekelezwa (haitumiki)
- *
- * Inachapisha kila kipengele kwenye stack kuanzia kile cha juu
- */
-void pall(orodha_t **stack, unsigned int nambari_ya_mstari)
+ * pall - prints the stack
+ * @kichwa: stack head
+ * @hesabu: no used
+ * Return: no return
+*/
+void pall(stack_t **kichwa, unsigned int hesabu)
 {
-orodha_t *sasa = *stack;
+stack_t *h;
+(void)hesabu;
 
-(void)nambari_ya_mstari;
-
-while (sasa != NULL)
+h = *kichwa;
+if (h == NULL)
+return;
+while (h)
 {
-printf("%d\n", sasa->nambari);
-sasa = sasa->inayofuata;
+printf("%d\n", h->n);
+h = h->next;
 }
 }

@@ -4,25 +4,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+#include <unistd.h>
 
-/**
- * struct orodha_s - Muundo wa orodha ya stack
- * @nambari: Nambari ya kipengele
- * @iliopita: Pointer kwa kipengele cha awali
- * @inayofuata: Pointer kwa kipengele kinachofuata
- *
- * Muundo wa nodelist kwa ajili ya stack
- */
-typedef struct orodha_s
+/* Define the structure for the stack */
+typedef struct stack_s
 {
-    int nambari;
-    struct orodha_s *iliopita;
-    struct orodha_s *inayofuata;
-} orodha_t;
+	int n;
+	struct stack_s *next;
+	struct stack_s *prev;
+} stack_t;
 
-/* Kazi za mfano */
-void push(orodha_t **stack, unsigned int nambari_ya_mstari, char *thamani);
-void pall(orodha_t **stack, unsigned int nambari_ya_mstari);
+/* Define the structure for bus */
+typedef struct bus_s
+{
+	char *content;
+	FILE *file; 
+	char *arg; 
+	int lifi;
+} bus_t;
+
+/* Global variable */
+extern bus_t bus;
+
+/* Function prototypes */
+void addnode(stack_t **kichwa, int n);
+void addqueue(stack_t **kichwa, int n);
+void push(stack_t **kichwa, unsigned int hesabu);
+void pall(stack_t **kichwa, unsigned int hesabu);
+void add(stack_t **kichwa, unsigned int hesabu);
+void swap(stack_t **kichwa, unsigned int hesabu);
+void nop(stack_t **kichwa, unsigned int hesabu);
+void free_stack(stack_t *kichwa);
+void execute_opcode(char *line, stack_t **kichwa, unsigned int hesabu);
 
 #endif /* MONTY_H */
+
